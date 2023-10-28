@@ -1,16 +1,17 @@
 ﻿
 
 using Microsoft.EntityFrameworkCore;
+using MyFamilyTree.DataAccess.CQRS.Queries.QueryManagement;
 using MyFamilyTree.DataAccess.Entities;
 
 namespace MyFamilyTree.DataAccess.CQRS.Queries
 {
     public class GetPeopleQuery : QueryBase<List<Person>>
     {
-        public override Task<List<Person>> ExecuteAsync(PeopleCollectionDbContext context)
+        public override async Task<List<Person>> Execute(PeopleCollectionDbContext context)
         {
-             return context.PeopleCollection.ToListAsync();
-
+            var allpeople = await context.PeopleCollection.ToListAsync();
+            return allpeople;
         }
     }
 }

@@ -19,21 +19,25 @@ namespace MyFamilyTreeAPI.Controllers
 
 
         [HttpGet]
-        [Route("")]
-        public async Task<IActionResult> GetAllPeople([FromQuery] GetPeopleRequest request)
+        [Route("ShowAllPeople")]
+        public async Task<IActionResult> GetPeople([FromQuery] GetPeopleRequest request)
         {
             var response = await this.mediator.Send(request);
             return Ok(response);
         }
 
-        [HttpPost]
-        [Route("")]
-        public async Task<IActionResult> 
-            AddPerson([FromBody] AddPersonRequest request)
+        [HttpGet]
+        [Route("person{Id}")]
+        public async Task<IActionResult> GetPersonById([FromBody] GetPeopleRequest request)
         {
-
             var response = await this.mediator.Send(request);
-
+            return Ok(response);
+        }
+        [HttpPost]
+        [Route("addPerson")]
+        public async Task<IActionResult> AddPerson([FromBody] AddPersonRequest request)
+        {
+            var response = await this.mediator.Send(request);
             return Ok(response);
         }
 

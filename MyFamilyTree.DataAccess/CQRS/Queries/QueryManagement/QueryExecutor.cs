@@ -1,5 +1,4 @@
-﻿
-namespace MyFamilyTree.DataAccess.CQRS.Queries
+﻿namespace MyFamilyTree.DataAccess.CQRS.Queries.QueryManagement
 {
     public class QueryExecutor : IQueryExecutor
     {
@@ -9,9 +8,9 @@ namespace MyFamilyTree.DataAccess.CQRS.Queries
         {
             this.context = context;
         }
-        public Task<TResult> ExecuteAsync<TResult>(QueryBase<TResult> query)
+        public Task<TResult> Execute<TResult>(QueryBase<TResult> query)
         {
-            return query.ExecuteAsync(this.context);
+            return query.Execute(context);
         }
     }
 }

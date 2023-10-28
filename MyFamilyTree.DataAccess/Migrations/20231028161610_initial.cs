@@ -21,14 +21,14 @@ namespace MyFamilyTree.DataAccess.Migrations
                     Surname = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PersonGender = table.Column<int>(type: "int", nullable: true),
-                    LifespanInYears = table.Column<short>(type: "smallint", nullable: false),
+                    LifespanInYears = table.Column<short>(type: "smallint", nullable: true),
                     PlaceOfBirth = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     PlaceOfDeath = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     PlaceOfLiving = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DateOfDeath = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Parent1Id = table.Column<int>(type: "int", nullable: false),
-                    Parent2Id = table.Column<int>(type: "int", nullable: false)
+                    Parent1Id = table.Column<int>(type: "int", nullable: true),
+                    Parent2Id = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {

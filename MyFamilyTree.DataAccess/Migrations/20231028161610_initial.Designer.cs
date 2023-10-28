@@ -12,8 +12,8 @@ using MyFamilyTree.DataAccess;
 namespace MyFamilyTree.DataAccess.Migrations
 {
     [DbContext(typeof(PeopleCollectionDbContext))]
-    [Migration("20231025180816_entitybaseAdd")]
-    partial class entitybaseAdd
+    [Migration("20231028161610_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,7 +42,7 @@ namespace MyFamilyTree.DataAccess.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<short>("LifespanInYears")
+                    b.Property<short?>("LifespanInYears")
                         .HasColumnType("smallint");
 
                     b.Property<string>("Name")
@@ -50,10 +50,10 @@ namespace MyFamilyTree.DataAccess.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<int>("Parent1Id")
+                    b.Property<int?>("Parent1Id")
                         .HasColumnType("int");
 
-                    b.Property<int>("Parent2Id")
+                    b.Property<int?>("Parent2Id")
                         .HasColumnType("int");
 
                     b.Property<int?>("PersonGender")

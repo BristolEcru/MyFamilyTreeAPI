@@ -10,7 +10,7 @@ namespace MyFamilyTree.DataAccess
         public PeopleCollectionDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder =  new DbContextOptionsBuilder<PeopleCollectionDbContext>();
-            optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MyFamilyTreeDb;Integrated Security=True;Trust Server Certificate=False");
+            optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MyFamilyTreeDb;Integrated Security=True");
             return new PeopleCollectionDbContext(optionsBuilder.Options);
         }  
     }

@@ -9,9 +9,8 @@ namespace MyFamilyTree.ApplicationServices.Mapping
         {
             this.CreateMap<AddPersonRequest, DataAccess.Entities.Person>();
 
-            this.CreateMap<DataAccess.Entities.Person, API.Domain.Models.Person>()
-                .ForMember(x => x.Id, y => y.MapFrom(y => y.Id))
-                .ForMember(x => x.Name, y => y.MapFrom(z => z.Name));
+            this.CreateMap<DataAccess.Entities.Person, API.Domain.Models.Person>();
+               
         }
     }
 }

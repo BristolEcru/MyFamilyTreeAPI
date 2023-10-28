@@ -1,6 +1,6 @@
 ﻿using MyFamilyTree.DataAccess.CQRS.Queries;
 
-namespace MyFamilyTree.DataAccess.CQRS.Commands
+namespace MyFamilyTree.DataAccess.CQRS.Commands.CommandManagement
 {
     public class CommandExecutor : ICommandExecutor
     {
@@ -10,10 +10,10 @@ namespace MyFamilyTree.DataAccess.CQRS.Commands
         {
             this.context = context;
         }
-     
-        public Task<TResult> ExecuteAsync<TParameters, TResult>(CommandBase<TParameters, TResult> command)
+
+        public Task<TResult> Execute<TParameters, TResult>(CommandBase<TParameters, TResult> command)
         {
-            return command.ExecuteAsync(this.context);
+            return command.Execute(context);
         }
     }
 }
