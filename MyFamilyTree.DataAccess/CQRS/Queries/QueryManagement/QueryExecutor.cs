@@ -1,4 +1,4 @@
-﻿namespace MyFamilyTree.DataAccess.CQRS.Queries.QueryManagement
+﻿namespace MyFamilyTree.Domain.CQRS.Queries.QueryManagement
 {
     public class QueryExecutor : IQueryExecutor
     {

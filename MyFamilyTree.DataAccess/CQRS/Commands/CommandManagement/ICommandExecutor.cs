@@ -1,4 +1,4 @@
-﻿namespace MyFamilyTree.DataAccess.CQRS.Commands.CommandManagement
+﻿namespace MyFamilyTree.Domain.CQRS.Commands.CommandManagement
 {
     public interface ICommandExecutor
     {

@@ -1,10 +1,10 @@
 ﻿
 
 using Microsoft.EntityFrameworkCore;
-using MyFamilyTree.DataAccess.CQRS.Queries.QueryManagement;
-using MyFamilyTree.DataAccess.Entities;
+using MyFamilyTree.Domain.CQRS.Queries.QueryManagement;
+using MyFamilyTree.Domain.Entities;
 
-namespace MyFamilyTree.DataAccess.CQRS.Queries
+namespace MyFamilyTree.Domain.CQRS.Queries
 {
     public class GetPeopleQuery : QueryBase<List<Person>>
     {

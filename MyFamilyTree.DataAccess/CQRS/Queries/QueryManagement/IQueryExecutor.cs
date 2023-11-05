@@ -2,7 +2,7 @@
 
 using Microsoft.IdentityModel.Tokens;
 
-namespace MyFamilyTree.DataAccess.CQRS.Queries.QueryManagement
+namespace MyFamilyTree.Domain.CQRS.Queries.QueryManagement
 {
     public interface IQueryExecutor
     {

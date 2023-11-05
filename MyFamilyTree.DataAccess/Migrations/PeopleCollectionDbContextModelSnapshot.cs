@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MyFamilyTree.DataAccess;
+using MyFamilyTree.Domain;
 
 #nullable disable
 
-namespace MyFamilyTree.DataAccess.Migrations
+namespace MyFamilyTree.Domain.Migrations
 {
     [DbContext(typeof(PeopleCollectionDbContext))]
     partial class PeopleCollectionDbContextModelSnapshot : ModelSnapshot
@@ -17,7 +17,7 @@ namespace MyFamilyTree.DataAccess.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.12")
+                .HasAnnotation("ProductVersion", "7.0.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -39,13 +39,13 @@ namespace MyFamilyTree.DataAccess.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<short?>("LifespanInYears")
-                        .HasColumnType("smallint");
-
-                    b.Property<string>("Name")
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
+
+                    b.Property<short?>("LifespanInYears")
+                        .HasColumnType("smallint");
 
                     b.Property<int?>("Parent1Id")
                         .HasColumnType("int");
@@ -68,7 +68,11 @@ namespace MyFamilyTree.DataAccess.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<string>("Surname")
+                    b.Property<string>("SecondSurname")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("SurnameAtBirth")
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 

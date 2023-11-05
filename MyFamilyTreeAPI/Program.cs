@@ -1,24 +1,34 @@
 using Microsoft.EntityFrameworkCore;
-
-using MediatR;
-using MyFamilyTree.DataAccess;
-using MyFamilyTree.DataAccess.Repositories;
+using MyFamilyTree.Domain;
+using MyFamilyTree.Domain.Repositories;
 
 using MyFamilyTree.ApplicationServices.Mapping;
-using MyFamilyTree.DataAccess.CQRS.Queries.QueryManagement;
-using MyFamilyTree.DataAccess.CQRS.Commands.CommandManagement;
-using MyFamilyTree.ApplicationServices.API.Domain.Mediator.Handlers;
-using MyFamilyTree.ApplicationServices.API.Domain.Mediator.RequestResponses;
+using MyFamilyTree.Domain.CQRS.Queries.QueryManagement;
+using MyFamilyTree.Domain.CQRS.Commands.CommandManagement;
+using System.Reflection;
+using Microsoft.AspNetCore.Authentication;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Mvc;
+using MyFamilyTree.Domain.Interfaces;
+using MyFamilyTree.ApplicationServices.Validators;
+using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.BaseClasses;
+using MagazynEdu.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.Configure<ApiBehaviorOptions>(options => { options.SuppressModelStateInvalidFilter = true; });
 
-// Add services to the container.
+builder.Services.AddAuthentication("BasicAuthentication")
+    .AddScheme<AuthenticationSchemeOptions, 
+    BasicAuthenticationHandler>("BasicAuthentication",
+    null);
+
+builder.Services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AddPersonValidator>());
 builder.Services.AddTransient<ICommandExecutor, CommandExecutor>();
 builder.Services.AddTransient<IQueryExecutor, QueryExecutor>();
 
 builder.Services.AddAutoMapper(typeof(PeopleProfile).Assembly);
-builder.Services.AddMediatR(typeof(MyFamilyTree.ApplicationServices.API.Domain.Mediator.RequestResponses.ResponseBase<>));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(ResponseBase<>).GetTypeInfo().Assembly));
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddDbContext<PeopleCollectionDbContext>(
     opt =>
@@ -41,8 +51,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();

@@ -1,42 +1,44 @@
-﻿using Azure.Core;
+﻿
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using MyFamilyTree.ApplicationServices.API.Domain.Mediator.RequestResponses;
-using MyFamilyTree.DataAccess.CQRS.Commands;
+using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.AddPerson;
+using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.GetAllPeople;
+using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.GetPersonById;
+using MyFamilyTree.Domain.CQRS.Commands;
+using MyFamilyTree.Presentation.Controllers;
 
 namespace MyFamilyTreeAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class PeopleController : ControllerBase
+    [Route("api/[controller]")]
+    public class PeopleController : ApiBaseController
     {
-        private readonly IMediator mediator;
-
-        public PeopleController(IMediator mediator)
+        public PeopleController(IMediator mediator) : base(mediator)
         {
-            this.mediator = mediator;
-        }
-
-
-        [HttpGet]
-        [Route("ShowAllPeople")]
-        public async Task<IActionResult> GetPeople([FromQuery] GetPeopleRequest request)
-        {
-            var response = await this.mediator.Send(request);
-            return Ok(response);
         }
 
         [HttpGet]
-        [Route("person{Id}")]
-        public async Task<IActionResult> GetPersonById([FromBody] GetPeopleRequest request)
+        [Route("showAllPeople")]
+        public  Task<IActionResult> GetPeople([FromQuery] GetPeopleRequest request)
         {
-            var response = await this.mediator.Send(request);
-            return Ok(response);
+           return  HandleRequest<GetPeopleRequest, GetPeopleResponse>(request);
         }
+
+        [HttpGet]
+        [Route("{Id}")]
+        public  Task<IActionResult> GetPersonById([FromRoute] int id)
+        {
+            var request = new GetPersonByIdRequest { Id = id };
+            return  HandleRequest<GetPersonByIdRequest, GetPersonByIdResponse>(request);
+        }
+
         [HttpPost]
         [Route("addPerson")]
         public async Task<IActionResult> AddPerson([FromBody] AddPersonRequest request)
         {
+            if(!ModelState.IsValid) {
+                return BadRequest("BAD_REQUEST_13");
+            }
             var response = await this.mediator.Send(request);
             return Ok(response);
         }

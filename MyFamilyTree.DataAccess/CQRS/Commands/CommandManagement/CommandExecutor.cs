@@ -1,6 +1,6 @@
-﻿using MyFamilyTree.DataAccess.CQRS.Queries;
+﻿using MyFamilyTree.Domain.CQRS.Queries;
 
-namespace MyFamilyTree.DataAccess.CQRS.Commands.CommandManagement
+namespace MyFamilyTree.Domain.CQRS.Commands.CommandManagement
 {
     public class CommandExecutor : ICommandExecutor
     {

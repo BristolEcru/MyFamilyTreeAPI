@@ -1,6 +1,6 @@
 ﻿
 
-namespace MyFamilyTree.DataAccess.Entities.Enums
+namespace MyFamilyTree.Domain.Entities.Enums
 {
     public enum EnumGender
     {

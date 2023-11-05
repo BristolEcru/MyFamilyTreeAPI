@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using MyFamilyTree.ApplicationServices.API.Domain.Mediator.RequestResponses;
+using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.AddPerson;
+using MyFamilyTree.ApplicationServices.ModelsDto;
 
 namespace MyFamilyTree.ApplicationServices.Mapping
 {
@@ -7,9 +8,9 @@ namespace MyFamilyTree.ApplicationServices.Mapping
     {
         public PeopleProfile()
         {
-            this.CreateMap<AddPersonRequest, DataAccess.Entities.Person>();
+            this.CreateMap<AddPersonRequest, Domain.Entities.Person>();
 
-            this.CreateMap<DataAccess.Entities.Person, API.Domain.Models.Person>();
+            this.CreateMap<Domain.Entities.Person, PersonDto>();
                
         }
     }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
-namespace MyFamilyTree.DataAccess.Entities
+namespace MyFamilyTree.Domain.Entities
 {
 
     [Index("Id", IsUnique = true)]

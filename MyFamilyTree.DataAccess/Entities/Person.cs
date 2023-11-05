@@ -1,21 +1,21 @@
 ﻿
-using MyFamilyTree.DataAccess.Entities.Enums;
+using MyFamilyTree.Domain.Entities.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
-namespace MyFamilyTree.DataAccess.Entities
+namespace MyFamilyTree.Domain.Entities
 {
-   
+
     public class Person : EntityBase
     {
         [Required]
         [MaxLength(250)]
-        public string Name { get; set; }
-
+        public string FirstName { get; set; }
         [MaxLength(250)]
-        public string? Surname { get; set; }
-
+        public string? SurnameAtBirth { get; set; }
+        [MaxLength(250)]
+        public string? SecondSurname { get; set; }
         public string? Description { get; set; }
         public EnumGender? PersonGender { get; set; }
         public short? LifespanInYears { get; set; }
@@ -33,7 +33,7 @@ namespace MyFamilyTree.DataAccess.Entities
         public int? Parent1Id { get; set; }
         public int? Parent2Id { get; set; }
 
-       
+
 
         [InverseProperty("Children")]
         public List<Person> Parents { get; set; }

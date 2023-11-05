@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MyFamilyTree.DataAccess.Entities;
+using MyFamilyTree.Domain.Entities;
+using MyFamilyTree.Domain.Interfaces;
 
-namespace MyFamilyTree.DataAccess.Repositories
+namespace MyFamilyTree.Domain.Repositories
 {
     public class Repository<T> : IRepository<T> where T : EntityBase
     {
