@@ -5,9 +5,9 @@ namespace MyFamilyTree.ApplicationServices.ModelsDto
     public class PersonDto
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string FirstName { get; set; }
 
-        public string? Surname { get; set; }
+        public string? SurnameAtBirth { get; set; }
 
         public string? Description { get; set; }
         public EnumGender? PersonGender { get; set; }

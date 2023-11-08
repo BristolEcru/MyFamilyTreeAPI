@@ -1,10 +1,11 @@
 ﻿
+using Azure;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.AddPerson;
-using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.GetAllPeople;
+using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.DeletePerson;
+using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.GetPeople;
 using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.GetPersonById;
-using MyFamilyTree.Domain.CQRS.Commands;
 using MyFamilyTree.Presentation.Controllers;
 
 namespace MyFamilyTreeAPI.Controllers
@@ -18,30 +19,34 @@ namespace MyFamilyTreeAPI.Controllers
         }
 
         [HttpGet]
-        [Route("showAllPeople")]
-        public  Task<IActionResult> GetPeople([FromQuery] GetPeopleRequest request)
+        [Route("")]
+        public Task<IActionResult> GetPeople([FromQuery] GetPeopleRequest request)
         {
-           return  HandleRequest<GetPeopleRequest, GetPeopleResponse>(request);
+
+            return HandleRequest<GetPeopleRequest, GetPeopleResponse>(request);
         }
 
         [HttpGet]
         [Route("{Id}")]
-        public  Task<IActionResult> GetPersonById([FromRoute] int id)
+        public Task<IActionResult> GetPersonById([FromRoute] int id)
         {
+
             var request = new GetPersonByIdRequest { Id = id };
-            return  HandleRequest<GetPersonByIdRequest, GetPersonByIdResponse>(request);
+            return HandleRequest<GetPersonByIdRequest, GetPersonByIdResponse>(request);
         }
 
         [HttpPost]
-        [Route("addPerson")]
-        public async Task<IActionResult> AddPerson([FromBody] AddPersonRequest request)
+        [Route("")]
+        public Task<IActionResult> AddPerson([FromBody] AddPersonRequest request)
         {
-            if(!ModelState.IsValid) {
-                return BadRequest("BAD_REQUEST_13");
-            }
-            var response = await this.mediator.Send(request);
-            return Ok(response);
+            return HandleRequest<AddPersonRequest, AddPersonResponse>(request);
         }
 
-    }
+        [HttpDelete]
+        [Route("")]
+        public Task<IActionResult> DeletePerson([FromBody] DeletePersonRequest request)
+        {
+            return HandleRequest<DeletePersonRequest, DeletePersonResponse>(request);
+        }
+    }   
 }

@@ -2,12 +2,10 @@
 
 using AutoMapper;
 using MediatR;
-using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.GetAllPeople;
-using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.GetAllUsers;
+using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.GetPeople;
 using MyFamilyTree.ApplicationServices.ModelsDto;
 using MyFamilyTree.Domain.CQRS.Queries;
 using MyFamilyTree.Domain.CQRS.Queries.QueryManagement;
-using MyFamilyTree.Domain.Entities;
 
 
 namespace MyFamilyTree.ApplicationServices.Mediator.Handlers
