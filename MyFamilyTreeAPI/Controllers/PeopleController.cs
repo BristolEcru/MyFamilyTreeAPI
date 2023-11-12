@@ -27,7 +27,7 @@ namespace MyFamilyTreeAPI.Controllers
         }
 
         [HttpGet]
-        [Route("{Id}")]
+        [Route("{id}")]
         public Task<IActionResult> GetPersonById([FromRoute] int id)
         {
 
@@ -36,14 +36,14 @@ namespace MyFamilyTreeAPI.Controllers
         }
 
         [HttpPost]
-        [Route("")]
+        [Route("AddPerson")]
         public Task<IActionResult> AddPerson([FromBody] AddPersonRequest request)
         {
             return HandleRequest<AddPersonRequest, AddPersonResponse>(request);
         }
 
         [HttpDelete]
-        [Route("")]
+        [Route("DeletePerson")]
         public Task<IActionResult> DeletePerson([FromBody] DeletePersonRequest request)
         {
             return HandleRequest<DeletePersonRequest, DeletePersonResponse>(request);

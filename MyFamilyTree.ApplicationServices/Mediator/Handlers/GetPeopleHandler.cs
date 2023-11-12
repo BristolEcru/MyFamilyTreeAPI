@@ -23,7 +23,7 @@ namespace MyFamilyTree.ApplicationServices.Mediator.Handlers
 
         public async Task<GetPeopleResponse> Handle(GetPeopleRequest request, CancellationToken cancellationToken)
         {
-            var query = new GetUsersQuery();
+            var query = new GetPeopleQuery();
 
             var people = await queryExecutor.Execute(query);
 

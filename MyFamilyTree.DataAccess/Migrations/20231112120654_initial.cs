@@ -37,6 +37,21 @@ namespace MyFamilyTree.Domain.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UsersCollection",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Role = table.Column<int>(type: "int", nullable: false),
+                    Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UsersCollection", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PersonPerson",
                 columns: table => new
                 {
@@ -69,6 +84,12 @@ namespace MyFamilyTree.Domain.Migrations
                 name: "IX_PersonPerson_ParentsId",
                 table: "PersonPerson",
                 column: "ParentsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UsersCollection_Id",
+                table: "UsersCollection",
+                column: "Id",
+                unique: true);
         }
 
         /// <inheritdoc />
@@ -76,6 +97,9 @@ namespace MyFamilyTree.Domain.Migrations
         {
             migrationBuilder.DropTable(
                 name: "PersonPerson");
+
+            migrationBuilder.DropTable(
+                name: "UsersCollection");
 
             migrationBuilder.DropTable(
                 name: "PeopleCollection");

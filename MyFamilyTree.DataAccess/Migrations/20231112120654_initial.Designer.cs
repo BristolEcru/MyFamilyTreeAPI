@@ -12,7 +12,7 @@ using MyFamilyTree.Domain;
 namespace MyFamilyTree.Domain.Migrations
 {
     [DbContext(typeof(PeopleCollectionDbContext))]
-    [Migration("20231028205831_initial")]
+    [Migration("20231112120654_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -25,7 +25,7 @@ namespace MyFamilyTree.Domain.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("MyFamilyTree.DataAccess.Entities.Person", b =>
+            modelBuilder.Entity("MyFamilyTree.Domain.Entities.Person", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -87,6 +87,33 @@ namespace MyFamilyTree.Domain.Migrations
                     b.ToTable("PeopleCollection");
                 });
 
+            modelBuilder.Entity("MyFamilyTree.Domain.Entities.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Id")
+                        .IsUnique();
+
+                    b.ToTable("UsersCollection");
+                });
+
             modelBuilder.Entity("PersonPerson", b =>
                 {
                     b.Property<int>("ChildrenId")
@@ -104,13 +131,13 @@ namespace MyFamilyTree.Domain.Migrations
 
             modelBuilder.Entity("PersonPerson", b =>
                 {
-                    b.HasOne("MyFamilyTree.DataAccess.Entities.Person", null)
+                    b.HasOne("MyFamilyTree.Domain.Entities.Person", null)
                         .WithMany()
                         .HasForeignKey("ChildrenId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MyFamilyTree.DataAccess.Entities.Person", null)
+                    b.HasOne("MyFamilyTree.Domain.Entities.Person", null)
                         .WithMany()
                         .HasForeignKey("ParentsId")
                         .OnDelete(DeleteBehavior.ClientCascade)

@@ -1,6 +1,7 @@
 ﻿
 
 using AutoMapper;
+using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.CreateUser;
 using MyFamilyTree.ApplicationServices.ModelsDto;
 using MyFamilyTree.Domain.Entities;
 
@@ -10,7 +11,13 @@ namespace MyFamilyTree.ApplicationServices.Mapping
     {
         public UsersProfile() 
         {
+
             CreateMap<User, UserDto>();
+            CreateMap<User, CreateUserDto>();
+            CreateMap<User, CreateUserRequest>();
+            CreateMap<CreateUserRequest, UserDto>();
+            CreateMap<CreateUserDto, UserDto>();
+
         }
     }
 }

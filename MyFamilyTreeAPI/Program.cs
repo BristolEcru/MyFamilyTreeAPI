@@ -13,6 +13,9 @@ using MyFamilyTree.Domain.Interfaces;
 using MyFamilyTree.ApplicationServices.Validators;
 using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.BaseClasses;
 using MagazynEdu.Authentication;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Identity;
+using MyFamilyTree.Domain.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +25,7 @@ builder.Services.AddAuthentication("BasicAuthentication")
     .AddScheme<AuthenticationSchemeOptions, 
     BasicAuthenticationHandler>("BasicAuthentication",
     null);
+builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
 builder.Services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AddPersonValidator>());
 builder.Services.AddTransient<ICommandExecutor, CommandExecutor>();

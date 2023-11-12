@@ -23,7 +23,7 @@ namespace MyFamilyTree.ApplicationServices.Mediator.Handlers
         public async Task<GetUsersResponse> Handle(GetUsersRequest request, CancellationToken cancellationToken)
         {
             var query = new GetUsersQuery();
-            var lisofusersfromdb = queryexecutor.Execute(query);
+            var lisofusersfromdb = await queryexecutor.Execute(query);
             var mappedUsers = mapper.Map<List<UserDto>>(lisofusersfromdb);
 
             var response = new GetUsersResponse { Data = mappedUsers };

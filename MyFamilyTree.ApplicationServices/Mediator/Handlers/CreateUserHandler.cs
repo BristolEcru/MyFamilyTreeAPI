@@ -2,7 +2,8 @@
 
 using AutoMapper;
 using MediatR;
-using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Identity;
 using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.CreateUser;
 using MyFamilyTree.ApplicationServices.ModelsDto;
 using MyFamilyTree.Domain.CQRS.Commands;
@@ -15,16 +16,19 @@ namespace MyFamilyTree.ApplicationServices.Mediator.Handlers
     {
         private readonly IMapper mapper;
         private readonly ICommandExecutor commandExecutor;
+        private readonly IPasswordHasher<User> passwordHasher;
 
-        public CreateUserHandler(IMapper mapper, ICommandExecutor commandExecutor)
+        public CreateUserHandler(IMapper mapper, ICommandExecutor commandExecutor, IPasswordHasher<User> passwordHasher)
         {
             this.mapper = mapper;
             this.commandExecutor = commandExecutor;
+            this.passwordHasher = passwordHasher;
         }
         public async Task<CreateUserResponse> Handle(CreateUserRequest request, CancellationToken cancellationToken)
         {
-            var usertodb = mapper.Map<User>(request);
-            var command =  new CreateUserCommand { Parameter = usertodb };
+            var newuser = mapper.Map<User>(request);
+            newuser.PasswordHash = passwordHasher.HashPassword(newuser,request.Password);
+            var command =  new CreateUserCommand { Parameter = newuser };
             var userfromdb = await commandExecutor.Execute(command);
             var response =  new CreateUserResponse() 
             { 

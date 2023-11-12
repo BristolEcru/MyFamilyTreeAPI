@@ -16,9 +16,14 @@
     using MyFamilyTree.Domain.CQRS.Queries.QueryManagement;
     using MyFamilyTree.Domain.CQRS.Queries;
     using MyFamilyTree.Domain.Entities;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNet.Identity;
+    using MyFamilyTree.Domain.CQRS.Commands.CommandManagement;
+    using MyFamilyTree.ApplicationServices.ModelsDto;
 
     public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {
+       
         private readonly IQueryExecutor queryExecutor;
 
         public BasicAuthenticationHandler(
@@ -26,15 +31,19 @@
             ILoggerFactory logger,
             UrlEncoder encoder,
             ISystemClock clock,
+          
             IQueryExecutor queryExecutor)
             : base(options, logger, encoder, clock)
         {
+        
             this.queryExecutor = queryExecutor;
         }
 
+        // PasswordVerificationResult VerifyHashedPassword(string hashedPassword, string providedPassword);
+
         protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
         {
-            // skip authentication if endpoint has [AllowAnonymous] attribute
+        
             var endpoint = Context.GetEndpoint();
             if (endpoint?.Metadata?.GetMetadata<IAllowAnonymous>() != null)
             {
@@ -61,7 +70,7 @@
                 user = await this.queryExecutor.Execute(query);
 
                 // TODO: HASH!
-                if (user == null || user.Password != password)
+                if (user == null || user.PasswordHash != password)
                 {
                     return AuthenticateResult.Fail("Invalid Authorization Header");
                 }

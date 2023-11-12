@@ -2,6 +2,7 @@
 using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.AddPerson;
 using MyFamilyTree.ApplicationServices.ModelsDto;
 using MyFamilyTree.Domain.CQRS.Queries;
+using MyFamilyTree.Domain.Entities;
 
 namespace MyFamilyTree.ApplicationServices.Mapping
 {
@@ -9,12 +10,14 @@ namespace MyFamilyTree.ApplicationServices.Mapping
     {
         public PeopleProfile()
         {
-            this.CreateMap<AddPersonRequest, Domain.Entities.Person>();
+            this.CreateMap<AddPersonRequest, Person>();
 
-            this.CreateMap<Domain.Entities.Person, PersonDto>();
+            this.CreateMap<Person, PersonDto>();
+      
 
-            this.CreateMap<Domain.Entities.Person, GetPersonByIdQuery>();
-            this.CreateMap<PersonDto, Domain.Entities.Person>();
+            this.CreateMap<Person, GetPersonByIdQuery>();
+
+            this.CreateMap<PersonDto, Person>();
 
         }
     }

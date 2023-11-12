@@ -25,6 +25,7 @@ namespace MyFamilyTree.Domain.Entities
         public string? PlaceOfDeath { get; set; }
         [MaxLength(250)]
         public string? PlaceOfLiving { get; set; }
+        public string? PlaceOfBurialCementary { get; set; }
 
         public DateTime? DateOfBirth { get; set; }
 
