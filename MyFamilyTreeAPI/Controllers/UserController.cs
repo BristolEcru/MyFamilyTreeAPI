@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.GetAllUsers;
 using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.CreateUser;
+using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.LoginUser;
+using MagazynEdu.Authentication;
+using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.GetUser;
 
 namespace MyFamilyTree.Presentation.Controllers
 {
@@ -19,6 +22,13 @@ namespace MyFamilyTree.Presentation.Controllers
         {
         }
 
+        [HttpGet]
+        [Route("getUser")]
+        public Task<IActionResult> GetUser([FromQuery] GetUserRequest request)
+        {
+            return HandleRequest<GetUserRequest, GetUserResponse>(request);
+
+        }
 
         [HttpGet]
         [Route("getUsers")]
@@ -36,5 +46,6 @@ namespace MyFamilyTree.Presentation.Controllers
             return HandleRequest<CreateUserRequest, CreateUserResponse>(request);
         }
 
+      
     }
 }

@@ -1,21 +1,20 @@
 ﻿
 
 using MyFamilyTree.Domain.Entities;
+using MyFamilyTree.Domain.Entities.Enums;
 using System.Security.Claims;
 
 namespace MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.Bases
 {
     public abstract class RequestBase
     {
-        public User user { get; set; }
-
+        public string usernamefromclaim { get; set; }
+        public string userrolefromclaim { get; set; }
         public RequestBase()
         {
-            var claims = new[] {
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Name, user.Username),
-                new Claim(ClaimTypes.Role, user.Role.ToString())
-            };
+            usernamefromclaim = ClaimTypes.Name;
+
+            userrolefromclaim = ClaimTypes.Role;
         }
     }
 }

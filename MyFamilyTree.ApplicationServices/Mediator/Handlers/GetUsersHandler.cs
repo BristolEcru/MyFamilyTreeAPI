@@ -22,6 +22,10 @@ namespace MyFamilyTree.ApplicationServices.Mediator.Handlers
 
         public async Task<GetUsersResponse> Handle(GetUsersRequest request, CancellationToken cancellationToken)
         {
+            if (request.userrolefromclaim.Equals("User"))
+            {
+                await Console.Out.WriteLineAsync("olaboga to user"); 
+            }
             var query = new GetUsersQuery();
             var lisofusersfromdb = await queryexecutor.Execute(query);
             var mappedUsers = mapper.Map<List<UserDto>>(lisofusersfromdb);

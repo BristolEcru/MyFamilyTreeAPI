@@ -16,6 +16,8 @@ namespace MyFamilyTree.ApplicationServices.Mapping
             CreateMap<User, CreateUserDto>();
             CreateMap<User, CreateUserRequest>();
             CreateMap<CreateUserRequest, UserDto>();
+            CreateMap<CreateUserRequest, User>();
+
             CreateMap<CreateUserDto, UserDto>();
 
         }

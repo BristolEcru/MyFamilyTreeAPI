@@ -23,7 +23,7 @@
 
     public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {
-       
+        private readonly IPasswordHasher<User> passwordHasher;
         private readonly IQueryExecutor queryExecutor;
 
         public BasicAuthenticationHandler(
@@ -31,19 +31,18 @@
             ILoggerFactory logger,
             UrlEncoder encoder,
             ISystemClock clock,
-          
+            IPasswordHasher<User> passwordHasher,
             IQueryExecutor queryExecutor)
             : base(options, logger, encoder, clock)
         {
-        
+            this.passwordHasher = passwordHasher;
             this.queryExecutor = queryExecutor;
         }
 
-        // PasswordVerificationResult VerifyHashedPassword(string hashedPassword, string providedPassword);
 
         protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
         {
-        
+
             var endpoint = Context.GetEndpoint();
             if (endpoint?.Metadata?.GetMetadata<IAllowAnonymous>() != null)
             {
@@ -69,8 +68,9 @@
                 };
                 user = await this.queryExecutor.Execute(query);
 
-                // TODO: HASH!
-                if (user == null || user.PasswordHash != password)
+                var veryficationresult = passwordHasher.VerifyHashedPassword(user, user.PasswordHash, password);
+
+                if (user == null || veryficationresult == 0)
                 {
                     return AuthenticateResult.Fail("Invalid Authorization Header");
                 }

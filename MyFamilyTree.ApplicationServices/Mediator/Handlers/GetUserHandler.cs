@@ -21,11 +21,11 @@ namespace MyFamilyTree.ApplicationServices.Mediator.Handlers
         }
         public async Task<GetUserResponse> Handle(GetUserRequest request, CancellationToken cancellationToken)
         {
-            var query = new GetUserQuery { Username = request.UserName };
+            var query = new GetUserQuery { Username = request.Username };
 
-            var usernameFromDb = queryExecutor.Execute(query);
+            var userFromDb = await queryExecutor.Execute(query);
 
-            var userDto= mapper.Map<UserDto>(usernameFromDb);
+            var userDto= mapper.Map<UserDto>(userFromDb);
 
             var response = new GetUserResponse { Data = userDto };
 

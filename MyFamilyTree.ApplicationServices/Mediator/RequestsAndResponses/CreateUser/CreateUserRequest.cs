@@ -10,7 +10,7 @@ namespace MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.CreateU
 
     public class CreateUserRequest : IRequest<CreateUserResponse>
     {
-        public EnumRole Role { get; set; }
+      
         public string Username { get; set; }
         public string Password { get; set; }
 

@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.BaseClasses;
+
 using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.Bases;
 using System.Net;
 using System.Security.Claims;
@@ -28,6 +28,10 @@ namespace MyFamilyTree.Presentation.Controllers
                     .Where(x => x.Value.Errors.Any())
                     .Select(x => new { property = x.Key, errors = x.Value.Errors }));
             }
+            
+            var username = this.User.FindFirstValue(ClaimTypes.Name);
+            var userrole = this.User.FindFirstValue(ClaimTypes.Role);
+   
 
             var response = await this.mediator.Send(request);
             if (response.Error != null)
