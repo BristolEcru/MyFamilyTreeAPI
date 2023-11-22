@@ -1,24 +1,19 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-
-using MyFamilyTree.Domain.CQRS.Commands;
-
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.GetAllUsers;
 using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.CreateUser;
 using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.LoginUser;
-using MagazynEdu.Authentication;
 using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.GetUser;
 
 namespace MyFamilyTree.Presentation.Controllers
 {
-    // [Authorize]
+    [Authorize]
     [ApiController]
-    [Route("api/[controller]")]
-    public class UserController : ApiBaseController
+    [Route("[controller]")]
+    public class UsersController : ApiBaseController
     {
-        public UserController(IMediator mediator) : base(mediator)
+        public UsersController(IMediator mediator) : base(mediator)
         {
         }
 
@@ -46,6 +41,14 @@ namespace MyFamilyTree.Presentation.Controllers
             return HandleRequest<CreateUserRequest, CreateUserResponse>(request);
         }
 
-      
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("login")]
+        public Task<IActionResult> Login([FromBody] LoginUserRequest request)
+        {
+            return HandleRequest<LoginUserRequest, LoginUserResponse>(request);
+        }
+
     }
 }

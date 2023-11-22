@@ -23,20 +23,19 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(
         builder =>
-    {
-        builder
-        .AllowAnyOrigin()
-        .AllowAnyHeader()
-        .AllowAnyMethod();
-    });
+        {
+            builder.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader();
+        });
 });
+
 
 builder.Services.Configure<ApiBehaviorOptions>(options => { options.SuppressModelStateInvalidFilter = true; });
 
 builder.Services.AddAuthentication("BasicAuthentication")
-    .AddScheme<AuthenticationSchemeOptions, 
-    BasicAuthenticationHandler>("BasicAuthentication",
-    null);
+    .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
+
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
 builder.Services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AddPersonValidator>());
@@ -64,10 +63,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors("AllowSpecificOrigin");
 
 app.UseHttpsRedirection();
-
 app.UseAuthentication();
+app.UseRouting();
+
+
 app.UseAuthorization();
 app.MapControllers();
 

@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 
@@ -38,6 +39,13 @@ namespace MyFamilyTree.Presentation.Controllers
             {
               return ErrorResponseBase(response.Error);
             }
+
+            //if(HttpContext.Response.StatusCode==200)
+            //    await Console.Out.WriteLineAsync("mamy 200");
+            //if (User.Claims.IsNullOrEmpty() && !response.Equals(null))
+            //{ var result = await HttpContext.AuthenticateAsync("BasicAuthentication");
+            //    await Console.Out.WriteLineAsync(result.Ticket.Properties.ToString());
+            //}
 
             return Ok(response);
 

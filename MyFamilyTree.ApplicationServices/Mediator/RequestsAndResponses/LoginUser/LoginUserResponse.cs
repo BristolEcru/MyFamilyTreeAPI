@@ -7,5 +7,6 @@ namespace MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.LoginUs
 {
     public class LoginUserResponse : ResponseBase<UserDto>
     {
+
     }
 }

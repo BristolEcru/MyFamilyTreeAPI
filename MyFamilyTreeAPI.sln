@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyFamilyTree.Domain", "MyFa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyFamilyTree.ApplicationServices", "MyFamilyTree.ApplicationServices\MyFamilyTree.ApplicationServices.csproj", "{CF42CF81-BBDD-42AC-BEA5-9D8EE533C1D0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyFamilyTreeBlazorWebAssemblyApp", "..\MyFamilyTreeBlazorWebAssemblyApp\MyFamilyTreeBlazorWebAssemblyApp\MyFamilyTreeBlazorWebAssemblyApp.csproj", "{5113E885-D395-43D1-BEC0-34B72300F231}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyFamilyTreeBlazorWebAssemblyApp", "..\MyFamilyTreeBlazorWebAssemblyApp\MyFamilyTreeBlazorWebAssemblyApp\MyFamilyTreeBlazorWebAssemblyApp.csproj", "{657BA9AD-0281-417C-8E1F-9ACD2933E373}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{CF42CF81-BBDD-42AC-BEA5-9D8EE533C1D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF42CF81-BBDD-42AC-BEA5-9D8EE533C1D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF42CF81-BBDD-42AC-BEA5-9D8EE533C1D0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5113E885-D395-43D1-BEC0-34B72300F231}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5113E885-D395-43D1-BEC0-34B72300F231}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5113E885-D395-43D1-BEC0-34B72300F231}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5113E885-D395-43D1-BEC0-34B72300F231}.Release|Any CPU.Build.0 = Release|Any CPU
+		{657BA9AD-0281-417C-8E1F-9ACD2933E373}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{657BA9AD-0281-417C-8E1F-9ACD2933E373}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{657BA9AD-0281-417C-8E1F-9ACD2933E373}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{657BA9AD-0281-417C-8E1F-9ACD2933E373}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -11,7 +11,7 @@ using MyFamilyTree.Presentation.Controllers;
 namespace MyFamilyTreeAPI.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class PeopleController : ApiBaseController
     {
         public PeopleController(IMediator mediator) : base(mediator)

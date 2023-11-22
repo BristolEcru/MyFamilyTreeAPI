@@ -46,11 +46,13 @@
             var endpoint = Context.GetEndpoint();
             if (endpoint?.Metadata?.GetMetadata<IAllowAnonymous>() != null)
             {
+                await Context.Response.WriteAsync("We are in endpoints");
                 return AuthenticateResult.NoResult();
             }
 
             if (!Request.Headers.ContainsKey("Authorization"))
             {
+                await Context.Response.WriteAsync("We dont have authorization header");
                 return AuthenticateResult.Fail("Missing Authorization Header");
             }
 
