@@ -9,6 +9,8 @@ using MyFamilyTree.ApplicationServices.ModelsDto;
 using MyFamilyTree.Domain.CQRS.Commands;
 using MyFamilyTree.Domain.CQRS.Commands.CommandManagement;
 using MyFamilyTree.Domain.Entities;
+using MyFamilyTree.Domain.Entities.Enums;
+using System.Data;
 
 namespace MyFamilyTree.ApplicationServices.Mediator.Handlers
 {
@@ -28,6 +30,7 @@ namespace MyFamilyTree.ApplicationServices.Mediator.Handlers
         {
             var newuser = mapper.Map<User>(request);
             newuser.PasswordHash = passwordHasher.HashPassword(newuser,request.Password);
+            newuser.Role = EnumRole.User;
             var command =  new CreateUserCommand { Parameter = newuser };
             var userfromdb = await commandExecutor.Execute(command);
             var response =  new CreateUserResponse() 

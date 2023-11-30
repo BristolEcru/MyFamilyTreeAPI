@@ -33,7 +33,7 @@ namespace MyFamilyTree.ApplicationServices.Mediator.Handlers
             var userfromdb = await commandExecutor.Execute(command);
             var response = new LoginUserResponse()
             {
-                Data = mapper.Map<UserDto>(userfromdb)
+                Data = mapper.Map<CreateUserDto>(userfromdb)
             };
 
 

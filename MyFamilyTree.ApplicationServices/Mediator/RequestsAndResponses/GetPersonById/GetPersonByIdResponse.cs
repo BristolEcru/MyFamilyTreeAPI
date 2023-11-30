@@ -4,7 +4,7 @@ using MyFamilyTree.ApplicationServices.ModelsDto;
 
 namespace MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.GetPersonById
 {
-    public class GetPersonByIdResponse : ResponseBase<PersonDto>
+    public class GetPersonByIdResponse : ResponseBase<CreateUserDto>
     {
     }
 }

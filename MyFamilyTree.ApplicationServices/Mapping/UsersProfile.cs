@@ -13,15 +13,14 @@ namespace MyFamilyTree.ApplicationServices.Mapping
         public UsersProfile() 
         {
 
-            CreateMap<User, UserDto>();
+        
             CreateMap<User, CreateUserDto>();
             CreateMap<User, CreateUserRequest>();
-            CreateMap<CreateUserRequest, UserDto>();
+
+            CreateMap<CreateUserRequest, CreateUserDto>();
             CreateMap<CreateUserRequest, User>();
 
-            CreateMap<CreateUserDto, UserDto>();
-
-            CreateMap<LoginUserRequest, UserDto>();
+            CreateMap<LoginUserRequest, CreateUserDto>();
             CreateMap<LoginUserRequest, User>();
         }
     }

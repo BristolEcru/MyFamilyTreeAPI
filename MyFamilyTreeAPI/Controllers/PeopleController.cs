@@ -4,6 +4,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.AddPerson;
 using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.DeletePerson;
+using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.EditPerson;
 using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.GetPeople;
 using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.GetPersonById;
 using MyFamilyTree.Presentation.Controllers;
@@ -22,8 +23,7 @@ namespace MyFamilyTreeAPI.Controllers
         [Route("")]
         public Task<IActionResult> GetPeople([FromQuery] GetPeopleRequest request)
         {
-
-            return HandleRequest<GetPeopleRequest, GetPeopleResponse>(request);
+                        return HandleRequest<GetPeopleRequest, GetPeopleResponse>(request);
         }
 
         [HttpGet]
@@ -36,14 +36,20 @@ namespace MyFamilyTreeAPI.Controllers
         }
 
         [HttpPost]
-        [Route("AddPerson")]
+        [Route("add_person")]
         public Task<IActionResult> AddPerson([FromBody] AddPersonRequest request)
         {
             return HandleRequest<AddPersonRequest, AddPersonResponse>(request);
         }
 
+        [HttpPost]
+        [Route("edit_person")]
+        public Task<IActionResult> EditPerson([FromBody] EditPersonRequest request)
+        {
+            return HandleRequest<EditPersonRequest, EditPersonResponse>(request);
+        }
         [HttpDelete]
-        [Route("DeletePerson")]
+        [Route("delete_person")]
         public Task<IActionResult> DeletePerson([FromBody] DeletePersonRequest request)
         {
             return HandleRequest<DeletePersonRequest, DeletePersonResponse>(request);

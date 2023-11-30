@@ -18,7 +18,7 @@ namespace MyFamilyTree.Presentation.Controllers
         }
 
         [HttpGet]
-        [Route("getUser")]
+        [Route("get_user")]
         public Task<IActionResult> GetUser([FromQuery] GetUserRequest request)
         {
             return HandleRequest<GetUserRequest, GetUserResponse>(request);
@@ -26,7 +26,7 @@ namespace MyFamilyTree.Presentation.Controllers
         }
 
         [HttpGet]
-        [Route("getUsers")]
+        [Route("get_users")]
         public Task<IActionResult> GetAllUsers([FromQuery] GetUsersRequest request)
         {
             return HandleRequest<GetUsersRequest, GetUsersResponse>(request);
@@ -35,7 +35,7 @@ namespace MyFamilyTree.Presentation.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        [Route("createUser")]
+        [Route("create_user")]
         public Task<IActionResult> CreateUser([FromBody] CreateUserRequest request)
         {
             return HandleRequest<CreateUserRequest, CreateUserResponse>(request);
