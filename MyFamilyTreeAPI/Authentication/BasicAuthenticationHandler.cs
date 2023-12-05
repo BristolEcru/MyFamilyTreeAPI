@@ -1,4 +1,4 @@
-﻿namespace MagazynEdu.Authentication
+﻿namespace MyFamilyTree.Authentication
 {
     using System;
     using System.Net.Http.Headers;
@@ -50,11 +50,11 @@
                 return AuthenticateResult.NoResult();
             }
 
-            if (!Request.Headers.ContainsKey("Authorization"))
-            {
-                await Context.Response.WriteAsync("We dont have authorization header");
-                return AuthenticateResult.Fail("Missing Authorization Header");
-            }
+            //if (!Request.Headers.ContainsKey("Authorization"))
+            //{
+            //    await Context.Response.WriteAsync("We dont have authorization header");
+            //    return AuthenticateResult.Fail("Missing Authorization Header");
+            //}
 
             User user = null;
             try

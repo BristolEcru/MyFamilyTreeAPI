@@ -28,7 +28,7 @@ namespace MyFamilyTree.ApplicationServices.Mediator.Handlers
             }
             var query = new GetUsersQuery();
             var lisofusersfromdb = await queryexecutor.Execute(query);
-            var mappedUsers = mapper.Map<List<CreateUserDto>>(lisofusersfromdb);
+            var mappedUsers = mapper.Map<List<UserDto>>(lisofusersfromdb);
 
             var response = new GetUsersResponse { Data = mappedUsers };
             return response;

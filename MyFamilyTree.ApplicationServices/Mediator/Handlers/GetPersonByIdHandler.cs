@@ -29,7 +29,7 @@ namespace MyFamilyTree.ApplicationServices.Mediator.Handlers
 
             var person = await queryExecutor.Execute(query);
 
-            var mappedtoDomainperson = mapper.Map<CreateUserDto>(person);
+            var mappedtoDomainperson = mapper.Map<PersonDto>(person);
 
             var response = new GetPersonByIdResponse() { Data = mappedtoDomainperson };
 

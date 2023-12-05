@@ -5,7 +5,7 @@ using MyFamilyTree.Domain.Entities;
 
 namespace MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.GetAllUsers
 {
-    public class GetUsersResponse : ResponseBase<List<CreateUserDto>>
+    public class GetUsersResponse : ResponseBase<List<UserDto>>
     {
 
     }

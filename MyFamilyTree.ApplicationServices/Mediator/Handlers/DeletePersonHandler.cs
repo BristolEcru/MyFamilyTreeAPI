@@ -31,7 +31,7 @@ namespace MyFamilyTree.ApplicationServices.Mediator.Handlers
             var personfromdb = commandexecutor.Execute(command);
             var response= new DeletePersonResponse()
             { 
-                Data = mapper.Map<CreateUserDto>(personfromdb) 
+                Data = mapper.Map<PersonDto>(personfromdb) 
             };
             return response;
         }

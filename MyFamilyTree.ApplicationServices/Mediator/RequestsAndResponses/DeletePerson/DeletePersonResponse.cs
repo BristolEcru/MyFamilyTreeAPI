@@ -3,7 +3,7 @@ using MyFamilyTree.ApplicationServices.ModelsDto;
 
 namespace MyFamilyTreeAPI.Controllers
 {
-    public class DeletePersonResponse: ResponseBase<CreateUserDto>
+    public class DeletePersonResponse: ResponseBase<PersonDto>
     {
     }
 }

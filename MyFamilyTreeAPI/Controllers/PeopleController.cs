@@ -1,6 +1,7 @@
 ﻿
 using Azure;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.AddPerson;
 using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.DeletePerson;
@@ -8,9 +9,11 @@ using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.EditPerson;
 using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.GetPeople;
 using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.GetPersonById;
 using MyFamilyTree.Presentation.Controllers;
+using System.Threading.Tasks;
 
 namespace MyFamilyTreeAPI.Controllers
 {
+
     [ApiController]
     [Route("[controller]")]
     public class PeopleController : ApiBaseController
@@ -21,38 +24,38 @@ namespace MyFamilyTreeAPI.Controllers
 
         [HttpGet]
         [Route("")]
-        public Task<IActionResult> GetPeople([FromQuery] GetPeopleRequest request)
+        public async Task<IActionResult> GetPeople([FromQuery] GetPeopleRequest request)
         {
-                        return HandleRequest<GetPeopleRequest, GetPeopleResponse>(request);
+            return await HandleRequest<GetPeopleRequest, GetPeopleResponse>(request);
         }
 
         [HttpGet]
         [Route("{id}")]
-        public Task<IActionResult> GetPersonById([FromRoute] int id)
+        public async Task<IActionResult> GetPersonById([FromRoute] int id)
         {
 
             var request = new GetPersonByIdRequest { Id = id };
-            return HandleRequest<GetPersonByIdRequest, GetPersonByIdResponse>(request);
+            return await HandleRequest<GetPersonByIdRequest, GetPersonByIdResponse>(request);
         }
 
         [HttpPost]
         [Route("add_person")]
-        public Task<IActionResult> AddPerson([FromBody] AddPersonRequest request)
+        public async Task<IActionResult> AddPerson([FromBody] AddPersonRequest request)
         {
-            return HandleRequest<AddPersonRequest, AddPersonResponse>(request);
+            return await HandleRequest<AddPersonRequest, AddPersonResponse>(request);
         }
 
         [HttpPost]
         [Route("edit_person")]
-        public Task<IActionResult> EditPerson([FromBody] EditPersonRequest request)
+        public async Task<IActionResult> EditPerson([FromBody] EditPersonRequest request)
         {
-            return HandleRequest<EditPersonRequest, EditPersonResponse>(request);
+            return await HandleRequest<EditPersonRequest, EditPersonResponse>(request);
         }
         [HttpDelete]
         [Route("delete_person")]
-        public Task<IActionResult> DeletePerson([FromBody] DeletePersonRequest request)
+        public async Task<IActionResult> DeletePerson([FromBody] DeletePersonRequest request)
         {
-            return HandleRequest<DeletePersonRequest, DeletePersonResponse>(request);
+            return await HandleRequest<DeletePersonRequest, DeletePersonResponse>(request);
         }
-    }   
+    }
 }

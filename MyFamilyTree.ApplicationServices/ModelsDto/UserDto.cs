@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿
 using MyFamilyTree.Domain.Entities.Enums;
 
 namespace MyFamilyTree.ApplicationServices.ModelsDto

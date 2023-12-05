@@ -17,21 +17,21 @@ namespace MyFamilyTree.Presentation.Controllers
             _authenticationService = authenticationService;
         }
 
-        [AllowAnonymous]
-        [HttpPost]
-        [Route("authenticate")]
-        public async Task<IActionResult> Authenticate([FromBody] LoginUserRequest request)
-        {
-                var result = await HttpContext.AuthenticateAsync("BasicAuthentication");
+        //[AllowAnonymous]
+        //[HttpPost]
+        //[Route("authenticate")]
+        //public async Task<IActionResult> Authenticate([FromBody] LoginUserRequest request)
+        //{
+        //        var result = await HttpContext.AuthenticateAsync("BasicAuthentication");
 
-                if (result.Succeeded)
-                {
-                    // Użytkownik został uwierzytelniony pomyślnie - miejsce na jwt
-                    return Ok("Zalogowano pomyślnie.");
-                }
+        //        if (result.Succeeded)
+        //        {
+        //            // Użytkownik został uwierzytelniony pomyślnie - miejsce na jwt
+        //            return Ok("Zalogowano pomyślnie.");
+        //        }
 
-                return Unauthorized("Niepoprawne dane uwierzytelniania.");
-            }
+        //        return Unauthorized("Niepoprawne dane uwierzytelniania.");
+        //    }
 
             // Inne akcje kontrolera,  wylogowywanie
         }

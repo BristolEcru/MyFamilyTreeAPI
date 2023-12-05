@@ -27,7 +27,7 @@ namespace MyFamilyTree.ApplicationServices.Mediator.Handlers
             var personfromdb = await commandExecutor.Execute(command);
             var response = new EditPersonResponse()
             {
-                Data = mapper.Map<CreateUserDto>(personfromdb)
+                Data = mapper.Map<PersonDto>(personfromdb)
             };
             return response;
         }

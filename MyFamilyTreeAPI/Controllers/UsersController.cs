@@ -5,6 +5,7 @@ using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.GetAllUsers
 using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.CreateUser;
 using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.LoginUser;
 using MyFamilyTree.ApplicationServices.Mediator.RequestsAndResponses.GetUser;
+using System.Threading.Tasks;
 
 namespace MyFamilyTree.Presentation.Controllers
 {
@@ -19,35 +20,35 @@ namespace MyFamilyTree.Presentation.Controllers
 
         [HttpGet]
         [Route("get_user")]
-        public Task<IActionResult> GetUser([FromQuery] GetUserRequest request)
+        public async Task<IActionResult> GetUser([FromQuery] GetUserRequest request)
         {
-            return HandleRequest<GetUserRequest, GetUserResponse>(request);
+            return await HandleRequest<GetUserRequest, GetUserResponse>(request);
 
         }
 
         [HttpGet]
         [Route("get_users")]
-        public Task<IActionResult> GetAllUsers([FromQuery] GetUsersRequest request)
+        public async Task<IActionResult> GetAllUsers([FromQuery] GetUsersRequest request)
         {
-            return HandleRequest<GetUsersRequest, GetUsersResponse>(request);
+            return await HandleRequest<GetUsersRequest, GetUsersResponse>(request);
 
         }
 
         [AllowAnonymous]
         [HttpPost]
         [Route("create_user")]
-        public Task<IActionResult> CreateUser([FromBody] CreateUserRequest request)
+        public async Task<IActionResult> CreateUser([FromBody] CreateUserRequest request)
         {
-            return HandleRequest<CreateUserRequest, CreateUserResponse>(request);
+            return await HandleRequest<CreateUserRequest, CreateUserResponse>(request);
         }
 
 
         [AllowAnonymous]
         [HttpPost]
         [Route("login")]
-        public Task<IActionResult> Login([FromBody] LoginUserRequest request)
+        public async Task<IActionResult> Login([FromBody] LoginUserRequest request)
         {
-            return HandleRequest<LoginUserRequest, LoginUserResponse>(request);
+            return await HandleRequest<LoginUserRequest, LoginUserResponse>(request);
         }
 
     }

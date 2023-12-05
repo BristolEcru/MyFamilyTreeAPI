@@ -16,12 +16,12 @@ namespace MyFamilyTree.ApplicationServices.Mapping
             this.CreateMap<EditPersonRequest, Person>();
 
 
-            this.CreateMap<Person, CreateUserDto>();
+            this.CreateMap<Person, UserDto>();
       
 
             this.CreateMap<Person, GetPersonByIdQuery>();
 
-            this.CreateMap<CreateUserDto, Person>();
+            this.CreateMap<UserDto, Person>();
 
         }
     }
